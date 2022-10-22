@@ -34,6 +34,28 @@ double GeneralLaplaceDistribution::density(double x) const
     return returnValue;
 }
 
+double GeneralLaplaceDistribution::density(double x, double theta, double lambda) const
+{
+    x = (x - theta) / lambda;
+    double returnValue, sum = 0;
+    if (n > 1)
+    {
+        for (size_t j = 0; j <= n - 1; j++)
+        {
+            sum += (factorial(n - 1 + j) / (factorial(n - 1 - j) * factorial(j))) * ((pow(fabs(x), n - 1 - j)) / pow(2, j));
+        }
+    }
+    else
+    {
+        sum = 1;
+    }
+
+
+    returnValue = exp(-fabs(x)) / (factorial(n - 1) * pow(2, n)) * sum;
+    returnValue /= lambda;
+    return returnValue;
+}
+
 double GeneralLaplaceDistribution::randomValue(double theta, double lambda) const
 {
     double returnValue;

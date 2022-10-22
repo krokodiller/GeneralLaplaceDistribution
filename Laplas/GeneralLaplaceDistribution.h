@@ -5,6 +5,7 @@ public:
     GeneralLaplaceDistribution();
     GeneralLaplaceDistribution(int);
     double density(double) const;
+    double density(double, double, double) const;
 
     double randomValue(double, double) const;
     double distortedRandomValue(double, double, double, double, double) const;
